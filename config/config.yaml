@@ -1,9 +1,9 @@
 global:
   dependencies:
     python:
-      - forge-sdk==5.0.0b0
-      - forge-cli==5.0.0b4
-      # - cecs==4.0.0a3
+      - forge-sdk==5.0.3
+      - forge-cli==5.0.2
+      - cecs==5.0.1
       - services/*.py
   env:
     PROJECT_SLUG: "nola"
@@ -25,13 +25,13 @@ services:
 
   heartbeat:
     type: python
-    version: 5.0.0b0
+    version: 5.0.1
     env:
       HEARTBEAT_CYCLE: 5
     db:
       mongo: true
     dependencies:
-      - rule-engine-api==5.0.0b3
+      - rule-engine-api==5.0.2
     resources:
       cpu: 69m
       memory: 65Mi
