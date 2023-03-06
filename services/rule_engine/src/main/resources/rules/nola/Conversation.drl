@@ -1,9 +1,5 @@
 package rules.nola;
 
-import com.mindsmiths.telegramAdapter.events.TelegramReceivedMessage
-import com.mindsmiths.gpt3.chatCompletion.GPT3ChatCompletion
-import com.mindsmiths.gpt3.imageGeneration.GPT3ImageGeneration
-
 import agents.Nola
 
 
