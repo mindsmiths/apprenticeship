@@ -38,13 +38,13 @@
 		</dependency>
 		<dependency>
 			<groupId>com.mindsmiths</groupId>
-			<artifactId>telegram-adapter-client</artifactId>
-			<version>5.0.0</version>
+			<artifactId>gpt3-adapter-client</artifactId>
+			<version>5.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.mindsmiths</groupId>
-			<artifactId>gpt3-adapter-client</artifactId>
-			<version>5.0.1</version>
+			<artifactId>infobip-adapter-client</artifactId>
+			<version>5.1.0</version>
 		</dependency>
 	</dependencies>
 	<build>

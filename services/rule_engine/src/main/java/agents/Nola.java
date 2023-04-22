@@ -11,9 +11,8 @@ import com.mindsmiths.gpt3.chatCompletion.ChatCues;
 import com.mindsmiths.gpt3.GPT3AdapterAPI;
 import com.mindsmiths.ruleEngine.model.Agent;
 import com.mindsmiths.ruleEngine.util.Log;
-import com.mindsmiths.telegramAdapter.TelegramAdapterAPI;
-import com.mindsmiths.telegramAdapter.api.MediaData;
-import com.mindsmiths.telegramAdapter.api.MediaType;
+import com.mindsmiths.infobipAdapter.InfobipAdapterAPI;
+import com.mindsmiths.infobipAdapter.api.MessageWithImage;
 
 import utils.Utils;
 
@@ -52,22 +51,20 @@ public class Nola extends Agent {
     public void sendMessage(String text) {
         String message = Utils.trimText(text);
         addMessageToMemory(ChatCues.ASSISTANT.label, message);
-        String chatId = getConnection("telegram");
-        TelegramAdapterAPI.sendMessage(chatId, message);
+        String chatId = getConnection("whatsapp");
+        InfobipAdapterAPI.sendWhatsappTextMessage(chatId, text);
     }
 
     public void sendWaitingMessage() {
-        String message = com.mindsmiths.sdk.utils.Utils.randomChoice(waitingForDallETexts);
-        String chatId = getConnection("telegram");
-        TelegramAdapterAPI.sendMessage(chatId, message);
+        String text = com.mindsmiths.sdk.utils.Utils.randomChoice(waitingForDallETexts);
+        this.sendMessage(text);
     }
 
     public void sendImage(String url) {
-        String chatId = getConnection("telegram");
-        addMessageToMemory(ChatCues.ASSISTANT.label, "Here is an image of it: https://demo.blob.core.windows.net/private/org-cmqScogXMe");
-        List<MediaData> mediaList = new ArrayList<>();
-        mediaList.add(new MediaData(MediaType.photo, url));
-        TelegramAdapterAPI.sendMessage(chatId, mediaList);
+        addMessageToMemory(ChatCues.ASSISTANT.label,
+                "Here is an image of it: https://demo.blob.core.windows.net/private/org-cmqScogXMe");
+        String chatId = getConnection("whatsapp");
+        InfobipAdapterAPI.sendWhatsappMessage(chatId, new MessageWithImage(url), "message/image");
     }
 
     // OpenAI models

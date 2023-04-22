@@ -1,0 +1,15 @@
+package rules;
+
+import com.mindsmiths.infobipAdapter.models.InfobipReceivedMessage
+
+import utils.ReceivedMessage
+
+rule "Convert whatsapp message"
+    salience 1000
+    when
+        whatsappMessage: InfobipReceivedMessage() from entry-point "signals"
+    then
+        ReceivedMessage genericMessage = new ReceivedMessage(whatsappMessage);
+        delete(whatsappMessage);
+        drools.getEntryPoint("signals").insert(genericMessage);
+end

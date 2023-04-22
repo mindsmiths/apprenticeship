@@ -34,13 +34,19 @@ services:
     resources:
       cpu: 69m
       memory: 65Mi
-  telegram-adapter:
+  infobip-adapter:
     type: python
-    version: 5.0.0
+    exposed: true
+    version: 5.1.0
     db:
       mongo: true
+    command:
+      run: "uvicorn infobip_adapter.service:app"
+      cwd: "."
     env:
-      TELEGRAM_BOT_TOKEN: "{{env.TELEGRAM_BOT_TOKEN}}"
+      INFOBIP_BASE_URL: "{{env.INFOBIP_BASE_URL}}"
+      INFOBIP_API_KEY: "{{env.INFOBIP_API_KEY}}"
+      INFOBIP_PHONE_NUMBER: "{{env.INFOBIP_PHONE_NUMBER}}"
     resources:
       cpu: 81m
       memory: 130Mi
