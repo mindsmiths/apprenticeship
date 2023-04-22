@@ -1,7 +1,7 @@
 services:
   infobip-adapter:
     command:
-      run: "uvicorn infobip_adapter.service:app --port=8003"
+      run: "uvicorn infobip_adapter.service:app --port=8002"
       cwd: "."
     port: 8002
 
