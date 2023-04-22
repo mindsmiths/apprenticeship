@@ -69,7 +69,7 @@ public class Nola extends Agent {
 
     // OpenAI models
 
-    public void askGPT3(String message) {
+    public void askGPT(String message) {
         List<ChatMessage> prompt = new ArrayList<>();
         prompt.add(new ChatMessage(ChatCues.SYSTEM.label, personality));
         this.addMessageToMemory(ChatCues.USER.label, message);
