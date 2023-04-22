@@ -1,8 +1,8 @@
 global:
   dependencies:
     python:
-      - forge-sdk==5.0.3
-      - forge-cli==5.0.2
+      - forge-sdk==5.0.6
+      - forge-cli==5.0.6
       - cecs==5.0.1
       - services/*.py
   env:
@@ -22,7 +22,6 @@ services:
     resources:
       cpu: 500m
       memory: 650Mi
-
   heartbeat:
     type: python
     version: 5.0.1
@@ -31,7 +30,31 @@ services:
     db:
       mongo: true
     dependencies:
-      - rule-engine-api==5.0.2
+      - rule-engine-api==5.0.6
     resources:
       cpu: 69m
       memory: 65Mi
+  infobip-adapter:
+    type: python
+    exposed: true
+    version: 5.1.0
+    db:
+      mongo: true
+    command:
+      run: "uvicorn infobip_adapter.service:app"
+      cwd: "."
+    env:
+      INFOBIP_BASE_URL: "{{env.INFOBIP_BASE_URL}}"
+      INFOBIP_API_KEY: "{{env.INFOBIP_API_KEY}}"
+      INFOBIP_PHONE_NUMBER: "{{env.INFOBIP_PHONE_NUMBER}}"
+    resources:
+      cpu: 81m
+      memory: 130Mi
+  gpt3-adapter:
+    type: python
+    version: 5.0.1
+    env:
+      OPENAI_API_KEY: "{{env.OPENAI_API_KEY}}"
+    resources:
+      cpu: 81m
+      memory: 130Mi

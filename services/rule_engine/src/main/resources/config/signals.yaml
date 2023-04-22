@@ -1,0 +1,5 @@
+com.mindsmiths.infobipAdapter.models.InfobipReceivedMessage:
+  - !GetOrCreateAgentByConnection
+    connectionName: whatsapp
+    connectionField: from
+    agentType: agents.Nola
